@@ -1,7 +1,10 @@
-# Next.js blog with comment section
+# F1 Contracts using Sanity
 
-This is a demo of how to add a simple comment section to blog post using [Next.js](https://nextjs.org), [Sanity.io](https://www.sanity.io), and [Vercel](https://vercel.com).
+This is a simple website I made for myself (and others) to see when contracts are expiring.
 
+This project is using Sanity as the datalayer and NextJS in the front. Hosted in Vercel: [f1contracts.com](https://www.f1contracts.com/)
+
+Please contact me if you have any questions
 
 ### Running the front-end
 

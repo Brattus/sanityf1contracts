@@ -56,11 +56,7 @@ export default function Index({ allDrivers, preview }) {
                   <div className={`absolute right-2 top-1 text-xs ${driver.team?.lightText ? 'text-white' : 'text-black'}`}>{driver.contractEnd ?? 'Unknown'}</div>
                 </div>
                     </div>
-
-
                   </div>
-
-
                 )}
               </div>
               {years()}
