@@ -8,3 +8,16 @@ article a {
 /* purgecss end ignore */
 @tailwind utilities;
 
+.animate-car {
+    animation: car-animation 5s ease-in-out forwards;
+  }
+
+  @keyframes car-animation {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(100vw);
+    }
+  }

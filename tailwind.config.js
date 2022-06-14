@@ -3,34 +3,35 @@ module.exports = {
     "./pages/**/*.{html,js,jsx,ts,tsx}",
     "./components/**/*.{html,js,jsx,ts,tsx}",
   ],
+  safelist: [
+    'grid-cols-1',
+    'grid-cols-2',
+    'grid-cols-3',
+    'grid-cols-4',
+    'grid-cols-5',
+    'grid-cols-6',
+    'grid-cols-7',
+    'grid-cols-8',
+    'grid-cols-9',
+    'grid-cols-10',
+    'grid-cols-11',
+    'grid-cols-12',
+    'col-span-1',
+    'col-span-2',
+    'col-span-3',
+    'col-span-4',
+    'col-span-5',
+    'col-span-6',
+    'col-span-7',
+    'col-span-8',
+    'col-span-9',
+    'col-span-10',
+    'col-span-11',
+    'col-span-12',
+  ],
   theme: {
-    extend: {
-      colors: {
-        "accent-1": "#FAFAFA",
-        "accent-2": "#EAEAEA",
-        "accent-7": "#333",
-        success: "#0070f3",
-        cyan: "#79FFE1",
-      },
-      spacing: {
-        28: "7rem",
-      },
-      letterSpacing: {
-        tighter: "-.04em",
-      },
-      lineHeight: {
-        tight: 1.2,
-      },
-      fontSize: {
-        "5xl": "2.5rem",
-        "6xl": "2.75rem",
-        "7xl": "4.5rem",
-        "8xl": "6.25rem",
-      },
-      boxShadow: {
-        small: "0 5px 10px rgba(0, 0, 0, 0.12)",
-        medium: "0 8px 30px rgba(0, 0, 0, 0.12)",
-      },
+    container: {
+      padding: '1rem',
     },
   },
 };

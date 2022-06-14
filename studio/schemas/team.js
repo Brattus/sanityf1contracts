@@ -16,6 +16,11 @@ export default {
         title: 'Color',
         type: 'color', 
       },
+      {
+        name:'lightText',
+        title: 'White text color',
+        type:'boolean',
+      }
     ],
     preview: {
       select: {
