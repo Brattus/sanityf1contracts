@@ -2,14 +2,9 @@ import Container from '../components/container'
 import Layout from '../components/layout'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
-
-import { getAllTeams } from '../lib/api'
 import { getAllDrivers } from '../lib/api'
 
-export default function Index({ allTeams, allDrivers, preview }) {
-  console.log(allTeams);
-  console.log(allDrivers);
-
+export default function Index({ allDrivers, preview }) {
   //Min year is this year
   //Max year is the highest contractEnd number from allDrivers
   const minYear = new Date().getFullYear();
@@ -19,8 +14,6 @@ export default function Index({ allTeams, allDrivers, preview }) {
     }
     return max;
   }, minYear);
-  console.log(minYear);
-  console.log(maxYear);
   // const years = Array.from(new Array(maxYear - minYear + 1), (x, i) => i + minYear);
   // console.log(years);
   const gap = maxYear - minYear + 1;
@@ -83,10 +76,9 @@ export default function Index({ allTeams, allDrivers, preview }) {
 
 
 export async function getStaticProps({ preview = false }) {
-  const allTeams = await getAllTeams(preview)
   const allDrivers = await getAllDrivers(preview)
   return {
-    props: { allTeams, allDrivers, preview },
+    props: { allDrivers, preview },
     revalidate: 1
   }
 }
