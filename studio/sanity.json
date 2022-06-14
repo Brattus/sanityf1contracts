@@ -5,7 +5,7 @@
     "dataset": "PLACEHOLDER_ENV_VARIABLES_WILL_HANDLE_FOR_US"
   },
   "project": {
-    "name": "Next.js Comment-enabled blog",
+    "name": "F1 Contracts",
     "basePath": "/studio"
   },
   "plugins": [
@@ -13,7 +13,8 @@
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
-    "@sanity/desk-tool"
+    "@sanity/desk-tool",
+    "@sanity/color-input"
   ],
   "env": {
     "development": {
