@@ -53,7 +53,7 @@ export default function Index({ allDrivers, preview }) {
     'col-span-10',
     'col-span-11',
     'col-span-12',
-  ],
+  ];
 
   return (
     <>
