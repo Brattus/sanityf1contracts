@@ -72,7 +72,6 @@ export default function Index({ allTeams, allDrivers, preview }) {
               </div>
               {years()}
             </div>
-            <div className="mt-20"><a href="https://docs.google.com/forms/d/e/1FAIpQLSc1iFgosI1PcD4igd9CcTL_YRZrJfGVD-BO4DzxmLYOWw-sCg/viewform?usp=sf_link" target="_blank">Any mistakes or questions? Please post them here</a></div>
 
           </div>
         </div>
