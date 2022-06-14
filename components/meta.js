@@ -36,6 +36,8 @@ export default function Meta() {
         name="description"
         content={`A statically generated blog example using Next.js and Sanity.io.`}
       />
+        <script data-goatcounter="https://f1contracts.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
     </Head>
   )
