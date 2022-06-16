@@ -11,6 +11,16 @@ export default {
         title: 'Name',
         type: 'string',
       },
+      {
+        name: 'contractEnd',
+        title: 'Contract End',
+        type: 'number'
+      },
+      {
+        name: 'comment',
+        title: 'Comment',
+        type: 'string'
+      },
     ],
     preview: {
       select: {
