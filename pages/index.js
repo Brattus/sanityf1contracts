@@ -108,7 +108,7 @@ export default function Index({ allDrivers, circuits, preview }) {
 
             <div className="h-0.5 bg-black w-full my-24"></div>
 
-            <div className="mx-auto">
+            <div className="mx-auto"> 
               <h2 className='text-lg font-bold '>Circuit contracts</h2>
                 <div className="flex flex-col space-y-1 mt-4">
                   <div className="flex"><div className="bg-circuit-active h-6 w-6 mr-1 rounded-r-full"></div>Active in {minYear}</div>
