@@ -110,16 +110,16 @@ export default function Index({ allDrivers, circuits, preview }) {
 
             <div className="mx-auto">
               <h2 className='text-lg font-bold '>Circuit contracts</h2>
-                <div className="flex flex-col space-y-1">
-                  <div className="flex"><div className="bg-circuit-active h-6 w-6 mr-1"></div>Active in {minYear}</div>
-                  <div className="flex"><div className="bg-circuit-notactive h-6 w-6 mr-1"></div>Not active in {minYear}</div>
+                <div className="flex flex-col space-y-1 mt-4">
+                  <div className="flex"><div className="bg-circuit-active h-6 w-6 mr-1 rounded-r-full"></div>Active in {minYear}</div>
+                  <div className="flex"><div className="bg-circuit-notactive h-6 w-6 mr-1 rounded-r-full"></div>Not active in {minYear}</div>
                 </div>
               {/* List of circuits ordered by contactEnd */}
               <div className="space-y-4 mt-10">
                 {circuits.sort((a, b) => a.contractEnd - b.contractEnd).reverse().map((circuit, i) =>
                   <div className="w-full" key={i}>
                     <div className="text-sm">{circuit.name}</div>
-                    <div className={`h-6 rounded-r-full relative ${circuit.contractEnd == null ? 'bg-transparent' : circuit.activeThisYear ? 'bg-circuit-active' : 'bg-circuit-notactive'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear )* -1) -1 + '%') }}>
+                    <div className={`h-6 rounded-r-full relative min-w-[10%] lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : circuit.activeThisYear ? 'bg-circuit-active' : 'bg-circuit-notactive'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear )* -1) -1 + '%') }}>
                     <div className="text-white absolute right-2 top-1 text-xs">{circuit.contractEnd}</div>
                     </div>
                     <div className="text-sm opacity-50">{circuit.comment}</div>
