@@ -3,8 +3,9 @@ import Layout from '../components/layout'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 import { getAllDrivers } from '../lib/api'
+import { getAllCircuits } from '../lib/api'
 
-export default function Index({ allDrivers, preview }) {
+export default function Index({ allDrivers, circuits, preview }) {
   //Min year is this year
   //Max year is the highest contractEnd number from allDrivers
   const minYear = new Date().getFullYear();
@@ -27,6 +28,19 @@ export default function Index({ allDrivers, preview }) {
       </div>
     )
   }
+
+
+  //Circuit stuff
+  //Circuit maxYear
+  const circuitMaxYear = circuits.reduce((max, circuit) => {
+    if (circuit.contractEnd > max) {
+      return circuit.contractEnd;
+    }
+    return max;
+  }, minYear);
+
+  const circuitGap = circuitMaxYear - minYear + 1;
+
 
   safelist: [
     'grid-cols-1',
@@ -69,6 +83,7 @@ export default function Index({ allDrivers, preview }) {
               </svg>
             </div>
             <div className="mx-auto">
+              <h2 className='text-lg font-bold'>Driver contracts</h2>
               {/* List of drivers ordered by contactEnd */}
               <div className="flex flex-col mb-6 space-y-4">
                 {years()}
@@ -77,16 +92,40 @@ export default function Index({ allDrivers, preview }) {
                 {allDrivers.sort((a, b) => a.contractEnd - b.contractEnd).reverse().map((driver, i) =>
                   <div className="" key={i}>
                     {/* Set bg color to drivers team color */}
-                    <div className="text-sm">{driver.name} - {driver.number}</div>
+                    <div className="text-sm">{driver.name} ({driver.number})
+                      {/* {driver.contractEnd ? (driver.contractEnd - minYear + 1) + (driver.contractEnd - minYear + 1 > 1 ? ' has years' : ' has year') + (' left') : ''} */}
+                    </div>
                     <div className={`grid grid-cols-${gap} h-6 `}>
-                      <div title={driver.name + ' - ' + driver.team?.name} className={`col-span-${(driver.contractEnd + gap) - maxYear} rounded-full relative`} style={{ backgroundColor: driver.team?.color?.hex }}>
-                  <div className={`absolute right-2 top-1 text-xs ${driver.team?.lightText ? 'text-white' : 'text-black'}`}>{driver.contractEnd ?? 'Unknown'}</div>
-                </div>
+                      <div title={driver.name + ' - ' + driver.team?.name} className={`col-span-${(driver.contractEnd + gap) - maxYear} rounded-r-full relative transition`} style={{ backgroundColor: driver.team?.color?.hex }}>
+                        <div className={`absolute right-2 top-1 text-xs ${driver.team?.lightText ? 'text-white' : 'text-black'}`}>{driver.contractEnd ?? 'Unknown'}</div>
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
               {years()}
+            </div>
+
+            <div className="h-0.5 bg-black w-full my-24"></div>
+
+            <div className="mx-auto">
+              <h2 className='text-lg font-bold '>Circuit contracts</h2>
+                <div className="flex flex-col space-y-1">
+                  <div className="flex"><div className="bg-circuit-active h-6 w-6 mr-1"></div>Active in {minYear}</div>
+                  <div className="flex"><div className="bg-circuit-notactive h-6 w-6 mr-1"></div>Not active in {minYear}</div>
+                </div>
+              {/* List of circuits ordered by contactEnd */}
+              <div className="space-y-4 mt-10">
+                {circuits.sort((a, b) => a.contractEnd - b.contractEnd).reverse().map((circuit, i) =>
+                  <div className="w-full" key={i}>
+                    <div className="text-sm">{circuit.name}</div>
+                    <div className={`h-6 rounded-r-full relative ${circuit.contractEnd == null ? 'bg-transparent' : circuit.activeThisYear ? 'bg-circuit-active' : 'bg-circuit-notactive'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear )* -1) -1 + '%') }}>
+                    <div className="text-white absolute right-2 top-1 text-xs">{circuit.contractEnd}</div>
+                    </div>
+                    <div className="text-sm opacity-50">{circuit.comment}</div>
+                  </div>
+                )}
+              </div>
             </div>
 
           </div>
@@ -99,8 +138,9 @@ export default function Index({ allDrivers, preview }) {
 
 export async function getStaticProps({ preview = false }) {
   const allDrivers = await getAllDrivers(preview)
+  const circuits = await getAllCircuits(preview)
   return {
-    props: { allDrivers, preview },
+    props: { allDrivers, circuits, preview },
     revalidate: 1
   }
 }

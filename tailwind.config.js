@@ -33,5 +33,11 @@ module.exports = {
     container: {
       padding: '1rem',
     },
+    extend:{
+      colors:{
+        'circuit-active':'#006847',
+        'circuit-notactive':'#E10600'
+      }
+    }
   },
-};
+}; 

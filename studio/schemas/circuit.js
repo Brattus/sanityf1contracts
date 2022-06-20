@@ -21,10 +21,15 @@ export default {
         title: 'Comment',
         type: 'string'
       },
+      {
+        name: 'activeThisYear',
+        title: 'Active this year',
+        type: 'boolean'
+      },
     ],
     preview: {
       select: {
-        name: 'name',
+        title: 'name',
       },
     }
   }

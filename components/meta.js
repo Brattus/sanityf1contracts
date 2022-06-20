@@ -34,7 +34,7 @@ export default function Meta() {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta
         name="description"
-        content={`A statically generated blog example using Next.js and Sanity.io.`}
+        content={`A overview of current F1 contracts.`}
       />
         <script data-goatcounter="https://f1contracts.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
