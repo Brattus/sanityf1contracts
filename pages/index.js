@@ -8,6 +8,7 @@ import { getAllCircuits } from '../lib/api'
 export default function Index({ allDrivers, circuits, preview }) {
   //Min year is this year
   //Max year is the highest contractEnd number from allDrivers
+  const drivers = allDrivers.sort((a, b) => a.contractEnd - b.contractEnd)
   const minYear = new Date().getFullYear();
   const maxYear = allDrivers.reduce((max, driver) => {
     if (driver.contractEnd > max) {
@@ -30,7 +31,7 @@ export default function Index({ allDrivers, circuits, preview }) {
   }
 
 
-  //Circuit stuff
+  //Circuit stuff 
   //Circuit maxYear
   const circuitMaxYear = circuits.reduce((max, circuit) => {
     if (circuit.contractEnd > max) {
@@ -83,26 +84,27 @@ export default function Index({ allDrivers, circuits, preview }) {
               </svg>
             </div>
             <div className="mx-auto">
-              <h2 className='text-lg font-bold'>Driver contracts</h2>
+              <h2 className='text-lg font-bold'>Driver contracts</h2> 
               {/* List of drivers ordered by contactEnd */}
-              <div className="flex flex-col mb-6 space-y-4">
+              <div className="flex flex-col-reverse mb-6 space-y-4">
                 {years()}
                 {/* List of drivers ordered by contactEnd */}
-
-                {allDrivers.sort((a, b) => a.contractEnd - b.contractEnd).reverse().map((driver, i) =>
-                  <div className="" key={i}>
+                {drivers.map((driver, i) =>
+                
+                  <div className={'driver' + i} key={i}>
                     {/* Set bg color to drivers team color */}
-                    <div className="text-sm">{driver.name} ({driver.number})
+                    <div className="text-sm">{driver.name} ({driver.number}) - {driver.team.name}
                       {/* {driver.contractEnd ? (driver.contractEnd - minYear + 1) + (driver.contractEnd - minYear + 1 > 1 ? ' has years' : ' has year') + (' left') : ''} */}
                     </div>
                     <div className={`grid grid-cols-${gap} h-6 `}>
-                      <div title={driver.name + ' - ' + driver.team?.name} className={`col-span-${(driver.contractEnd + gap) - maxYear} rounded-r-full relative transition`} style={{ backgroundColor: driver.team?.color?.hex }}>
-                        <div className={`absolute right-2 top-1 text-xs ${driver.team?.lightText ? 'text-white' : 'text-black'}`}>{driver.contractEnd ?? 'Unknown'}</div>
+                      {/* <div className="">{driver.name} -  {driver.team.name}</div> */} 
+                      <div title={driver.name + ' - ' + driver.team.name}  className={`col-span-${(driver.contractEnd + gap) - maxYear} rounded-r-full relative transition`} style={{ backgroundColor: driver.team.color.hex }}>
+                        <div className={`absolute right-2 top-1 text-xs ${driver.team.lightText ? 'text-white' : 'text-black'}`}>{driver.contractEnd ?? 'Unknown'}</div>
                       </div>
-                    </div>
-                  </div>
+                    </div> 
+                  </div> 
                 )}
-              </div>
+              </div>  
               {years()}
             </div>
 
@@ -129,11 +131,11 @@ export default function Index({ allDrivers, circuits, preview }) {
             </div>
 
           </div>
-        </div>
+        </div> 
       </Layout>
     </>
   )
-}
+} 
 
 
 export async function getStaticProps({ preview = false }) {
@@ -141,6 +143,6 @@ export async function getStaticProps({ preview = false }) {
   const circuits = await getAllCircuits(preview)
   return {
     props: { allDrivers, circuits, preview },
-    revalidate: 1
+    revalidate: 60
   }
 }
