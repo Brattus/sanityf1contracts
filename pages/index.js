@@ -86,8 +86,9 @@ export default function Index({ allDrivers, circuits, preview }) {
             <div className="mx-auto">
               <h2 className='text-lg font-bold'>Driver contracts</h2> 
               {/* List of drivers ordered by contactEnd */}
+              
+              {years()}
               <div className="flex flex-col-reverse mb-6 space-y-4">
-                {years()}
                 {/* List of drivers ordered by contactEnd */}
                 {drivers.map((driver, i) =>
                 
