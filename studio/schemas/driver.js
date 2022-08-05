@@ -12,8 +12,18 @@ export default {
       type: 'string'
     },
     {
+      name: 'comment',
+      title: 'Comment',
+      type: 'string'
+    },
+    {
       name: 'number',
       title: 'Number',
+      type: 'number'
+    },
+    {
+      name: 'contractStart',
+      title: 'Contract Start',
       type: 'number'
     },
     {
@@ -24,6 +34,22 @@ export default {
     {
       name: 'team',
       title: 'Team',
+      type: 'reference',
+      to: [{type: 'team'}]
+    },
+    {
+      name: 'contractStart2',
+      title: '2 Contract Start',
+      type: 'number'
+    },
+    {
+      name: 'contractEnd2',
+      title: '2 Contract End',
+      type: 'number'
+    },
+    {
+      name: 'team2',
+      title: '2 Team',
       type: 'reference',
       to: [{type: 'team'}]
     },
