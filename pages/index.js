@@ -126,6 +126,7 @@ export default function Index({ allDrivers, circuits, preview }) {
                         </div>
                       }
                     </div>
+                    {driver.comment && <div className="text-sm opacity-50">{driver.comment}</div>}
                   </div>
                 )}
               </div>
