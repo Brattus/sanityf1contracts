@@ -10,7 +10,7 @@ export default function Index({ allDrivers, circuits, preview }) {
   //Max year is the highest contractEnd number from allDrivers
   const minYear = 2023;
   //drivers is all drivers that has a contractEnd above minYear sorted by contactEnd
-  const drivers = allDrivers.filter(driver => driver.contractEnd >= minYear).sort((a, b) => a.contractEnd - b.contractEnd);
+  const drivers = allDrivers.filter(driver => driver.contractEnd >= minYear || driver.contractEnd == null).sort((a, b) => a.contractEnd - b.contractEnd);
   const maxYear = allDrivers.reduce((max, driver) => {
     if (driver.contractEnd > max) {
       return driver.contractEnd;
