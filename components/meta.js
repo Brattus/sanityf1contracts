@@ -1,6 +1,11 @@
 import Head from 'next/head'
 import { CMS_NAME, HOME_OG_IMAGE_URL } from '../lib/constants'
 
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('adcf6b7d42a42e3833f4dbe593ffced3', {debug: false}); 
+mixpanel.track('Page view');
+
 export default function Meta() {
   return (
     <Head>
@@ -36,8 +41,7 @@ export default function Meta() {
         name="description"
         content={`A overview of current F1 contracts.`}
       />
-        <script data-goatcounter="https://f1contracts.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
+        
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
     </Head>
   )
