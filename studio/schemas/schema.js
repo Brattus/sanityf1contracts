@@ -8,6 +8,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import driver from './driver'
 import circuit from './circuit'
 import team from './team'
+import settings from './settings'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -21,5 +22,6 @@ export default createSchema({
     driver,
     team,
     circuit,
+    settings
   ])
 })

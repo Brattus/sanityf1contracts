@@ -26,6 +26,11 @@ export default {
         title: 'Active this year',
         type: 'boolean'
       },
+      {
+        name: 'raceDate',
+        title: 'Race date this year',
+        type: 'date',
+      }
     ],
     preview: {
       select: {

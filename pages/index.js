@@ -8,9 +8,9 @@ import { getAllCircuits } from '../lib/api'
 export default function Index({ allDrivers, circuits, preview }) {
   //Min year is this year
   //Max year is the highest contractEnd number from allDrivers
-  const drivers = allDrivers.sort((a, b) => a.contractEnd - b.contractEnd)
-  console.log(drivers);
-  const minYear = new Date().getFullYear();
+  const minYear = 2023;
+  //drivers is all drivers that has a contractEnd above minYear sorted by contactEnd
+  const drivers = allDrivers.filter(driver => driver.contractEnd >= minYear).sort((a, b) => a.contractEnd - b.contractEnd);
   const maxYear = allDrivers.reduce((max, driver) => {
     if (driver.contractEnd > max) {
       return driver.contractEnd;
@@ -44,15 +44,11 @@ export default function Index({ allDrivers, circuits, preview }) {
   const circuitGap = circuitMaxYear - minYear + 1;
 
   //Get last edited date from drivers using _updatedAt
-  const lastEdited = drivers.reduce((max, driver) => {
-    if (driver._updatedAt < max) {
-      return driver._updatedAt;
-    }
-    return max;
-  } , new Date());
-  console.log(lastEdited);
-  //formatted
-  const lastEditedFormatted = new Date(lastEdited).toLocaleString();
+  const lastEditedDriverOrCircuit = drivers.concat(circuits).sort((a, b) => new Date(b._updatedAt) - new Date(a._updatedAt))[0];
+  console.log(lastEditedDriverOrCircuit)
+  
+  //formatted with date and time
+  const lastEditedFormatted = new Date(lastEditedDriverOrCircuit._updatedAt).toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short' });
   
   
 
@@ -97,7 +93,7 @@ export default function Index({ allDrivers, circuits, preview }) {
               </svg>
             </div>
             <div className="mx-auto">
-              <h2 className='text-lg font-bold'>Driver contracts</h2>
+              <h2 className='text-lg font-bold'>Driver contracts for {minYear} and beyond</h2>
               {/* Last edited driver text output */}
               <p className='text-sm text-gray-600'>
                 Last updated: {lastEditedFormatted}
@@ -117,7 +113,7 @@ export default function Index({ allDrivers, circuits, preview }) {
                     </div>
                     <div className={`grid grid-cols-${gap} h-6 `}>
                       {/* <div className="">{driver.name} -  {driver.team.name}</div> */}
-                      <div title={driver.name + ' - ' + driver.team?.name} className={`col-span-${(driver.contractEnd - minYear + 1)} col-start-${driver.contractStart && driver.contractStart > minYear ? (driver.contractStart - minYear + 1) : '0'} ${driver.team2 == null ? 'rounded-r-full' : ''} relative transition`} style={{ backgroundColor: driver.team?.color?.hex }}>
+                      <div title={driver.name + ' - ' + driver.team?.name} className={`col-span-${(driver.contractEnd - minYear + (driver.contractStart > minYear ? -1 * (driver.contractStart - minYear) : 0) + 1)} col-start-${driver.contractStart && driver.contractStart > minYear ? (driver.contractStart - minYear + 1) : '0'} ${driver.team2 == null ? 'rounded-r-full' : ''} relative transition`} style={{ backgroundColor: driver.team?.color?.hex }}>
                         <div className={`absolute right-2 top-1 text-xs ${driver.team?.lightText ? 'text-white' : 'text-black'}`}>{driver.contractEnd ?? 'Unknown'}</div>
                       </div>
                       {driver.team2 &&
@@ -149,7 +145,9 @@ export default function Index({ allDrivers, circuits, preview }) {
                     <div className={`h-6 rounded-r-full relative min-w-[10%] lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : circuit.activeThisYear ? 'bg-circuit-active' : 'bg-circuit-notactive'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear) * -1) - 1 + '%') }}>
                       <div className="text-white absolute right-2 top-1 text-xs">{circuit.contractEnd}</div>
                     </div>
-                    <div className="text-sm opacity-50">{circuit.comment}</div>
+                    {/* If circuit has raceDate, insert her and format */}
+                    {circuit.raceDate && <div className="text-sm">{minYear} Race date: {circuit.raceDate}</div>}
+                    <div className="text-sm opacity-50">{circuit.comment}</div> 
                   </div>
                 )}
               </div>
