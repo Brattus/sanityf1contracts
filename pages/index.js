@@ -51,7 +51,7 @@ export default function Index({ allDrivers, circuits, preview }) {
   //formatted with date and time
   const lastEditedFormatted = new Date(lastEditedDriverOrCircuit._updatedAt).toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short' });
   
-  
+  let circuitsSorted = circuits.sort((a, b) => a.contractEnd - b.contractEnd).reverse();
 
   safelist: [
     'grid-cols-1',
@@ -140,10 +140,10 @@ export default function Index({ allDrivers, circuits, preview }) {
               </div>
               {/* List of circuits ordered by contactEnd */}
               <div className="space-y-4 mt-10">
-                {circuits.sort((a, b) => a.contractEnd - b.contractEnd).reverse().map((circuit, i) =>
+                {circuitsSorted.map((circuit, i) =>
                   <div className="w-full" key={i}>
                     <div className="text-sm">{circuit.name}</div>
-                    <div className={`h-6 rounded-r-full relative min-w-[10%] lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : circuit.activeThisYear ? 'bg-circuit-active' : 'bg-circuit-notactive'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear) * -1) - 1 + '%') }}>
+                    <div className={`h-6 rounded-r-full relative min-w-[10%] lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : ''} ${circuitsSorted.activeThisYear ? 'bg-circuit-notactive' : 'bg-circuit-active'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear) * -1) - 1 + '%') }}>
                       <div className="text-white absolute right-2 top-1 text-xs">{circuit.contractEnd}</div>
                     </div>
                     {/* If circuit has raceDate, insert her and format */}
