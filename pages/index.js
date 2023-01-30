@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 import { getAllDrivers } from '../lib/api'
 import { getAllCircuits } from '../lib/api'
+import { Analytics } from '@vercel/analytics/react';
 
 export default function Index({ allDrivers, circuits, preview }) {
   //Min year is this year
