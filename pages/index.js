@@ -143,7 +143,7 @@ export default function Index({ allDrivers, circuits, preview }) {
                 {circuitsSorted.map((circuit, i) =>
                   <div className="w-full" key={i}>
                     <div className="text-sm">{circuit.name}</div>
-                    <div className={`h-6 rounded-r-full relative min-w-[10%] lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : ''} ${circuitsSorted.activeThisYear ? 'bg-circuit-notactive' : 'bg-circuit-active'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear) * -1) - 1 + '%') }}>
+                    <div className={`h-6 rounded-r-full relative min-w-[40px] lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : ''} ${circuitsSorted.activeThisYear ? 'bg-circuit-notactive' : 'bg-circuit-active'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear) * -1) - 1 + '%') }}>
                       <div className="text-white absolute right-2 top-1 text-xs">{circuit.contractEnd}</div>
                     </div>
                     {/* If circuit has raceDate, insert her and format */}
