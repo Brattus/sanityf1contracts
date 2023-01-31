@@ -53,33 +53,6 @@ export default function Index({ allDrivers, circuits, preview }) {
   
   let circuitsSorted = circuits.sort((a, b) => a.contractEnd - b.contractEnd).reverse();
 
-  safelist: [
-    'grid-cols-1',
-    'grid-cols-2',
-    'grid-cols-3',
-    'grid-cols-4',
-    'grid-cols-5',
-    'grid-cols-6',
-    'grid-cols-7',
-    'grid-cols-8',
-    'grid-cols-9',
-    'grid-cols-10',
-    'grid-cols-11',
-    'grid-cols-12',
-    'col-span-1',
-    'col-span-2',
-    'col-span-3',
-    'col-span-4',
-    'col-span-5',
-    'col-span-6',
-    'col-span-7',
-    'col-span-8',
-    'col-span-9',
-    'col-span-10',
-    'col-span-11',
-    'col-span-12',
-  ];
-
   return (
     <>
       <Layout preview={preview}>
@@ -143,7 +116,7 @@ export default function Index({ allDrivers, circuits, preview }) {
                 {circuitsSorted.map((circuit, i) =>
                   <div className="w-full" key={i}>
                     <div className="text-sm">{circuit.name}</div>
-                    <div className={`h-6 rounded-r-full relative min-w-[40px] lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : ''} ${circuitsSorted.activeThisYear ? 'bg-circuit-notactive' : 'bg-circuit-active'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear) * -1) - 1 + '%') }}>
+                    <div className={`h-6 rounded-r-full relative min-w-40px lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : ''} ${circuitsSorted.activeThisYear ? 'bg-circuit-notactive' : 'bg-circuit-active'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear) * -1) - 1 + '%') }}>
                       <div className="text-white absolute right-2 top-1 text-xs">{circuit.contractEnd}</div>
                     </div>
                     {/* If circuit has raceDate, insert her and format */}

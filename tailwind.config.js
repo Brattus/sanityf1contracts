@@ -49,6 +49,9 @@ module.exports = {
       colors:{
         'circuit-active':'#006847',
         'circuit-notactive':'#E10600'
+      },
+      minWidth: {
+        '40px': '40px',
       }
     }
   },
