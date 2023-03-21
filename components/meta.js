@@ -38,8 +38,8 @@ export default function Meta() {
       />
 
    <title>F1 Driver and Circuit Contracts</title>
-  <meta name="description" content="Get the latest information on driver and circuit contracts for the Formula One racing season. Stay up to date with all the latest signings, renewals, and negotiations in the world of F1."/>
-  <meta name="keywords" content="F1, Formula 1, driver contracts, circuit contracts, Formula One, racing, signings, renewals, negotiations, f1"/>
+  <meta name="description" content="Stay up-to-date with the latest F1 driver and circuit contracts for the 2023 season, including signings, renewals, negotiations, and salary updates."/>
+  <meta name="keywords" content="F1, Formula 1, driver contracts, circuit contracts, Formula One, racing, signings, renewals, negotiations, f1, salary, salaries"/>
         
       <meta property="og:image" content={'https://f1contracts.com/public/f1metaimage.webp'} />
     </Head>
