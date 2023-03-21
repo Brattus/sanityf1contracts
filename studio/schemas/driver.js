@@ -53,6 +53,12 @@ export default {
       type: 'reference',
       to: [{type: 'team'}]
     },
+    {
+      name: 'salary',
+      title: 'Salary',
+      type: 'number',
+      description: 'Salary in millions of dollars',
+    },
   ],
   preview: {
     select: {

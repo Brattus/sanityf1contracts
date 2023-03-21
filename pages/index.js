@@ -123,6 +123,9 @@ export default function Index({ allDrivers, circuits, preview }) {
                       }
                     </div>
                     {driver.comment && <div className="text-sm opacity-50">{driver.comment}</div>}
+                    {driver.salary && <div className="text-sm opacity-50">Salary: ${driver.salary ?? 'Unknown'} million</div>}
+
+
                   </div>
                 )}
               </div>
