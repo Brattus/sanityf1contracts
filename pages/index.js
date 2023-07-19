@@ -42,7 +42,16 @@ export default function Index({ allDrivers, circuits, preview }) {
     return max;
   }, minYear);
 
-  const circuitGap = circuitMaxYear - minYear + 1;
+
+  //Get percentage for each cicuit where circuitMaxYear (which currently is 2036) is 100% and 2023 is 0%
+  circuits.forEach(circuit => {
+    if (circuit.contractEnd == minYear) {
+      circuit.percent = Math.round(10);
+    }
+    circuit.percent = Math.round((circuit.contractEnd - minYear) / (circuitMaxYear - minYear) * 100);
+  });
+
+  console.log(minYear, circuits);
 
   //Get last edited date from drivers using _updatedAt
   const lastEditedDriverOrCircuit = drivers.concat(circuits).sort((a, b) => new Date(b._updatedAt) - new Date(a._updatedAt))[0];
@@ -145,7 +154,7 @@ export default function Index({ allDrivers, circuits, preview }) {
                 {circuitsSorted.map((circuit, i) =>
                   <div className="w-full" key={i}>
                     <div className="text-sm">{circuit.name}</div>
-                    <div className={`h-6 rounded-r-full relative min-w-40px lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : ''} ${circuitsSorted.activeThisYear ? 'bg-circuit-notactive' : 'bg-circuit-active'}`} style={{ width: (100 / ((circuit.contractEnd - circuitMaxYear) * -1) - 1 + '%') }}>
+                    <div className={`h-6 rounded-r-full relative min-w-40px lg:min-w-0 ${circuit.contractEnd == null ? 'bg-transparent' : ''} ${circuitsSorted.activeThisYear ? 'bg-circuit-notactive' : 'bg-circuit-active'}`} style={{ width: circuit.percent + '%' }}>
                       <div className="text-white absolute right-2 top-1 text-xs">{circuit.contractEnd}</div>
                     </div>
                     {/* If circuit has raceDate, insert her and format */}
